@@ -1,0 +1,847 @@
+{
+    "address": "CX9N85RmEnkFybbab3YTfQViUN4SvsTxrLy7Po2aWzGf",
+    "metadata": {
+      "name": "crash_game",
+      "version": "0.1.0",
+      "spec": "0.1.0",
+      "description": "Created with Anchor"
+    },
+    "instructions": [
+      {
+        "name": "cashout",
+        "docs": [
+          "Player manually cashes out before crash"
+        ],
+        "discriminator": [
+          20,
+          216,
+          18,
+          249,
+          215,
+          11,
+          214,
+          83
+        ],
+        "accounts": [
+          {
+            "name": "game_round",
+            "writable": true
+          },
+          {
+            "name": "player_bet",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    98,
+                    101,
+                    116
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "game_round"
+                },
+                {
+                  "kind": "account",
+                  "path": "player"
+                }
+              ]
+            }
+          },
+          {
+            "name": "player",
+            "writable": true,
+            "signer": true
+          },
+          {
+            "name": "vault",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    118,
+                    97,
+                    117,
+                    108,
+                    116
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": [
+          {
+            "name": "current_multiplier",
+            "type": "u16"
+          }
+        ]
+      },
+      {
+        "name": "end_round",
+        "docs": [
+          "End the round and resolve all bets"
+        ],
+        "discriminator": [
+          54,
+          47,
+          1,
+          200,
+          250,
+          6,
+          144,
+          63
+        ],
+        "accounts": [
+          {
+            "name": "game_config",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    103,
+                    97,
+                    109,
+                    101,
+                    95,
+                    99,
+                    111,
+                    110,
+                    102,
+                    105,
+                    103
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "game_round",
+            "writable": true
+          },
+          {
+            "name": "authority",
+            "signer": true
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "initialize",
+        "docs": [
+          "Initialize the game configuration"
+        ],
+        "discriminator": [
+          175,
+          175,
+          109,
+          31,
+          13,
+          152,
+          155,
+          237
+        ],
+        "accounts": [
+          {
+            "name": "game_config",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    103,
+                    97,
+                    109,
+                    101,
+                    95,
+                    99,
+                    111,
+                    110,
+                    102,
+                    105,
+                    103
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "authority",
+            "writable": true,
+            "signer": true
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": [
+          {
+            "name": "house_edge",
+            "type": "u16"
+          }
+        ]
+      },
+      {
+        "name": "launch_round",
+        "docs": [
+          "Start the crash animation"
+        ],
+        "discriminator": [
+          208,
+          72,
+          63,
+          240,
+          67,
+          111,
+          101,
+          224
+        ],
+        "accounts": [
+          {
+            "name": "game_config",
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    103,
+                    97,
+                    109,
+                    101,
+                    95,
+                    99,
+                    111,
+                    110,
+                    102,
+                    105,
+                    103
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "game_round",
+            "writable": true
+          },
+          {
+            "name": "authority",
+            "signer": true
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "place_bet",
+        "docs": [
+          "Player places a bet for the next round"
+        ],
+        "discriminator": [
+          222,
+          62,
+          67,
+          220,
+          63,
+          166,
+          126,
+          33
+        ],
+        "accounts": [
+          {
+            "name": "game_config",
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    103,
+                    97,
+                    109,
+                    101,
+                    95,
+                    99,
+                    111,
+                    110,
+                    102,
+                    105,
+                    103
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "game_round",
+            "writable": true
+          },
+          {
+            "name": "player_bet",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    98,
+                    101,
+                    116
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "game_round"
+                },
+                {
+                  "kind": "account",
+                  "path": "player"
+                }
+              ]
+            }
+          },
+          {
+            "name": "player",
+            "writable": true,
+            "signer": true
+          },
+          {
+            "name": "vault",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    118,
+                    97,
+                    117,
+                    108,
+                    116
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "auto_cashout",
+            "type": "u16"
+          }
+        ]
+      },
+      {
+        "name": "resolve_bet",
+        "docs": [
+          "Resolve a player's bet after crash (for auto-cashout or crash)"
+        ],
+        "discriminator": [
+          137,
+          132,
+          33,
+          97,
+          48,
+          208,
+          30,
+          159
+        ],
+        "accounts": [
+          {
+            "name": "game_round",
+            "writable": true
+          },
+          {
+            "name": "player_bet",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    98,
+                    101,
+                    116
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "game_round"
+                },
+                {
+                  "kind": "account",
+                  "path": "player"
+                }
+              ]
+            }
+          },
+          {
+            "name": "player"
+          },
+          {
+            "name": "vault",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    118,
+                    97,
+                    117,
+                    108,
+                    116
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "start_round",
+        "docs": [
+          "Start a new game round"
+        ],
+        "discriminator": [
+          144,
+          144,
+          43,
+          7,
+          193,
+          42,
+          217,
+          215
+        ],
+        "accounts": [
+          {
+            "name": "game_config",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    103,
+                    97,
+                    109,
+                    101,
+                    95,
+                    99,
+                    111,
+                    110,
+                    102,
+                    105,
+                    103
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "game_round",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    114,
+                    111,
+                    117,
+                    110,
+                    100
+                  ]
+                },
+                {
+                  "kind": "arg",
+                  "path": "round_id"
+                }
+              ]
+            }
+          },
+          {
+            "name": "authority",
+            "writable": true,
+            "signer": true
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": [
+          {
+            "name": "round_id",
+            "type": "u64"
+          },
+          {
+            "name": "crash_point",
+            "type": "u16"
+          }
+        ]
+      },
+      {
+        "name": "update_config",
+        "docs": [
+          "Update game configuration (admin only)"
+        ],
+        "discriminator": [
+          29,
+          158,
+          252,
+          191,
+          10,
+          83,
+          219,
+          99
+        ],
+        "accounts": [
+          {
+            "name": "game_config",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    103,
+                    97,
+                    109,
+                    101,
+                    95,
+                    99,
+                    111,
+                    110,
+                    102,
+                    105,
+                    103
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "authority",
+            "signer": true
+          }
+        ],
+        "args": [
+          {
+            "name": "min_bet",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "max_bet",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "house_edge",
+            "type": {
+              "option": "u16"
+            }
+          }
+        ]
+      }
+    ],
+    "accounts": [
+      {
+        "name": "GameConfig",
+        "discriminator": [
+          45,
+          146,
+          146,
+          33,
+          170,
+          69,
+          96,
+          133
+        ]
+      },
+      {
+        "name": "GameRound",
+        "discriminator": [
+          69,
+          45,
+          252,
+          31,
+          254,
+          31,
+          101,
+          146
+        ]
+      },
+      {
+        "name": "PlayerBet",
+        "discriminator": [
+          244,
+          5,
+          205,
+          245,
+          189,
+          41,
+          154,
+          0
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "InvalidHouseEdge",
+        "msg": "House edge must be 5% or less"
+      },
+      {
+        "code": 6001,
+        "name": "BetTooSmall",
+        "msg": "Bet amount is below minimum"
+      },
+      {
+        "code": 6002,
+        "name": "BetTooLarge",
+        "msg": "Bet amount exceeds maximum"
+      },
+      {
+        "code": 6003,
+        "name": "GameNotAcceptingBets",
+        "msg": "Game is not accepting bets"
+      },
+      {
+        "code": 6004,
+        "name": "InvalidMultiplier",
+        "msg": "Invalid multiplier"
+      },
+      {
+        "code": 6005,
+        "name": "Unauthorized",
+        "msg": "Unauthorized"
+      },
+      {
+        "code": 6006,
+        "name": "InvalidGameState",
+        "msg": "Invalid game state"
+      },
+      {
+        "code": 6007,
+        "name": "BetNotActive",
+        "msg": "Bet is not active"
+      },
+      {
+        "code": 6008,
+        "name": "AlreadyCrashed",
+        "msg": "Game has already crashed"
+      },
+      {
+        "code": 6009,
+        "name": "GameNotEnded",
+        "msg": "Game has not ended yet"
+      },
+      {
+        "code": 6010,
+        "name": "BetAlreadyResolved",
+        "msg": "Bet already resolved"
+      },
+      {
+        "code": 6011,
+        "name": "RoundMismatch",
+        "msg": "Round mismatch"
+      },
+      {
+        "code": 6012,
+        "name": "InvalidBetRange",
+        "msg": "Invalid bet range"
+      }
+    ],
+    "types": [
+      {
+        "name": "BetStatus",
+        "type": {
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "Active"
+            },
+            {
+              "name": "CashedOut"
+            },
+            {
+              "name": "Crashed"
+            }
+          ]
+        }
+      },
+      {
+        "name": "GameConfig",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "authority",
+              "type": "pubkey"
+            },
+            {
+              "name": "house_edge",
+              "type": "u16"
+            },
+            {
+              "name": "min_bet",
+              "type": "u64"
+            },
+            {
+              "name": "max_bet",
+              "type": "u64"
+            },
+            {
+              "name": "total_games",
+              "type": "u64"
+            },
+            {
+              "name": "total_wagered",
+              "type": "u64"
+            },
+            {
+              "name": "total_profit",
+              "type": "u64"
+            }
+          ]
+        }
+      },
+      {
+        "name": "GameRound",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "round_id",
+              "type": "u64"
+            },
+            {
+              "name": "crash_point",
+              "type": "u16"
+            },
+            {
+              "name": "status",
+              "type": {
+                "defined": {
+                  "name": "GameStatus"
+                }
+              }
+            },
+            {
+              "name": "total_bets",
+              "type": "u32"
+            },
+            {
+              "name": "total_wagered",
+              "type": "u64"
+            },
+            {
+              "name": "total_payout",
+              "type": "u64"
+            },
+            {
+              "name": "start_time",
+              "type": "i64"
+            },
+            {
+              "name": "launch_time",
+              "type": "i64"
+            },
+            {
+              "name": "end_time",
+              "type": "i64"
+            }
+          ]
+        }
+      },
+      {
+        "name": "GameStatus",
+        "type": {
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "Accepting"
+            },
+            {
+              "name": "InProgress"
+            },
+            {
+              "name": "Ended"
+            }
+          ]
+        }
+      },
+      {
+        "name": "PlayerBet",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "player",
+              "type": "pubkey"
+            },
+            {
+              "name": "round_id",
+              "type": "u64"
+            },
+            {
+              "name": "amount",
+              "type": "u64"
+            },
+            {
+              "name": "auto_cashout",
+              "type": "u16"
+            },
+            {
+              "name": "cashout_multiplier",
+              "type": "u16"
+            },
+            {
+              "name": "payout",
+              "type": "u64"
+            },
+            {
+              "name": "status",
+              "type": {
+                "defined": {
+                  "name": "BetStatus"
+                }
+              }
+            },
+            {
+              "name": "timestamp",
+              "type": "i64"
+            }
+          ]
+        }
+      }
+    ]
+  }
